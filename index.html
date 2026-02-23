@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopHome | Modern Shopping</title>
+  <!-- Bootstrap 5 CSS & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <style>
+    :root {
+      --orange: #f39c12;
+      --light-orange: #ffe5b4;
+      --soft-bg: #fff9f0;
+    }
+    body {
+      background-color: var(--soft-bg);
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      padding-top: 70px;
+    }
+    .navbar {
+      background-color: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .navbar-brand img {
+      height: 45px;
+      width: auto;
+    }
+    .nav-link {
+      color: #444;
+      font-weight: 500;
+      margin: 0 5px;
+      transition: 0.2s;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--orange) !important;
+    }
+    .btn-orange {
+      background-color: var(--orange);
+      color: white;
+      border-radius: 30px;
+      padding: 8px 20px;
+      font-weight: 600;
+      border: none;
+      transition: 0.2s;
+    }
+    .btn-orange:hover {
+      background-color: #e67e22;
+      color: white;
+    }
+    .card {
+      border: none;
+      border-radius: 20px;
+      background: white;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(243, 156, 18, 0.1);
+    }
+    .card-img-top {
+      border-radius: 20px 20px 0 0;
+      height: 220px;
+      object-fit: cover;
+      background: #f8f9fa;
+    }
+    .product-price {
+      color: var(--orange);
+      font-weight: 700;
+      font-size: 1.3rem;
+    }
+    footer {
+      background-color: #1e1e1e;
+      color: #f0f0f0;
+      padding: 50px 0 20px;
+      margin-top: 60px;
+    }
+    footer a {
+      color: #ccc;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    footer a:hover {
+      color: var(--orange);
+    }
+    .social-icons i {
+      font-size: 1.5rem;
+      margin-right: 15px;
+      color: #aaa;
+    }
+    .social-icons i:hover {
+      color: var(--orange);
+    }
+  </style>
+</head>
+<body>
+  <!-- Fixed Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="assets/logo.png" alt="ShopHome Logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="location.html">Location</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="cart.html"><i class="bi bi-cart3"></i> Cart</a></li>
+          <li class="nav-item"><a class="nav-link" href="account.html"><i class="bi bi-person-circle"></i> Account</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content: 9 product cards -->
+  <div class="container my-5">
+    <h2 class="mb-4" style="color: #333; border-left: 6px solid var(--orange); padding-left: 20px;">Featured Products</h2>
+    <div class="row g-4">
+      <!-- Product cards generated via loop for clarity, but we'll write static HTML for 9 items -->
+      <div class="col-sm-6 col-md-4 col-lg-4">
+        <div class="card h-100">
+          <img src="assets/item1.jpg" class="card-img-top" alt="Product 1">
+          <div class="card-body">
+            <h5 class="card-title">Classic Watch</h5>
+            <p class="product-price">$49.99</p>
+            <button class="btn btn-orange w-100 details-btn" data-bs-toggle="modal" data-bs-target="#productModal"
+              data-name="Classic Watch" data-price="$49.99" data-desc="Elegant stainless steel watch with leather strap. Water resistant." data-img="assets/item1.jpg">Details</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4 col-lg-4">
+        <div class="card h-100">
+          <img src="assets/item2.jpg" class="card-img-top" alt="Product 2">
+          <div class="card-body">
+            <h5 class="card-title">Leather Backpack</h5>
+            <p class="product-price">$89.99</p>
+            <button class="btn btn-orange w-100 details-btn" data-bs-toggle="modal" data-bs-target="#productModal"
+              data-name="Leather Backpack" data-price="$89.99" data-desc="Genuine leather backpack, fits 15\" laptop, perfect for daily commute." data-img="assets/item2.jpg">Details</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4 col-lg-4">
+        <div class="card h-100">
+          <img src="assets/item3.jpg" class="card-img-top" alt="Product 3">
+          <div class="card-body">
+            <h5 class="card-title">Wireless Earbuds</h5>
+            <p class="product-price">$29.99</p>
+            <button class="btn btn-orange w-100 details-btn" data-bs-toggle="modal" data-bs-target="#productModal"
+              data-name="Wireless Earbuds" data-price="$29.99" data-desc="Bluetooth 5.0, 20h battery, noise isolation, charging case included." data-img="assets/item3.jpg">Details</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4 col-lg-4">
+        <div class="card h-100">
+          <img src="assets/item4.jpg" class="card-img-top" alt="Product 4">
+          <div class="card-body">
+            <h5 class="card-title">Sunglasses</h5>
+            <p class="product-price">$34.99</p>
+            <button class="btn btn-orange w-100 details-btn" data-bs-toggle="modal" data-bs-target="#productModal"
+              data-name="Sunglasses" data-price="$34.99" data-desc="UV400 protection, polarized, lightweight frame, unisex design." data-img="assets/item4.jpg">Details</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4 col-lg-4">
+        <div class="card h-100">
+          <img src="assets/item5.jpg" class="card-img-top" alt="Product 5">
+          <div class="card-body">
+            <h5 class="card-title">Running Shoes</h5>
+            <p class="product-price">$79.99</p>
+            <button class="btn btn-orange w-100 details-btn" data-bs-toggle="modal" data-bs-target="#productModal"
+              data-name="Running Shoes" data-price="$79.99" data-desc="Breathable mesh, cushioned sole, energy return, sizes 7-12." data-img="assets/item5.jpg">Details</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4 col-lg-4">
+        <div class="card h-100">
+          <img src="assets/item6.jpg" class="card-img-top" alt="Product 6">
+          <div class="card-body">
+            <h5 class="card-title">Smart Watch</h5>
+            <p class="product-price">$129.99</p>
+            <button class="btn btn-orange w-100 details-btn" data-bs-toggle="modal" data-bs-target="#productModal"
+              data-name="Smart Watch" data-price="$129.99" data-desc="Fitness tracker, heart rate monitor, GPS, 5-day battery life." data-img="assets/item6.jpg">Details</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4 col-lg-4">
+        <div class="card h-100">
+          <img src="assets/item7.jpg" class="card-img-top" alt="Product 7">
+          <div class="card-body">
+            <h5 class="card-title">Coffee Mug</h5>
+            <p class="product-price">$14.99</p>
+            <button class="btn btn-orange w-100 details-btn" data-bs-toggle="modal" data-bs-target="#productModal"
+              data-name="Coffee Mug" data-price="$14.99" data-desc="Ceramic, 12oz, microwave safe, cool modern design." data-img="assets/item7.jpg">Details</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4 col-lg-4">
+        <div class="card h-100">
+          <img src="assets/item8.jpg" class="card-img-top" alt="Product 8">
+          <div class="card-body">
+            <h5 class="card-title">Desk Lamp</h5>
+            <p class="product-price">$39.99</p>
+            <button class="btn btn-orange w-100 details-btn" data-bs-toggle="modal" data-bs-target="#productModal"
+              data-name="Desk Lamp" data-price="$39.99" data-desc="LED, adjustable brightness, USB charging port, eye-caring." data-img="assets/item8.jpg">Details</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4 col-lg-4">
+        <div class="card h-100">
+          <img src="assets/item9.jpg" class="card-img-top" alt="Product 9">
+          <div class="card-body">
+            <h5 class="card-title">Notebook Set</h5>
+            <p class="product-price">$19.99</p>
+            <button class="btn btn-orange w-100 details-btn" data-bs-toggle="modal" data-bs-target="#productModal"
+              data-name="Notebook Set" data-price="$19.99" data-desc="Pack of 3, hardcover, dotted pages, elastic closure." data-img="assets/item9.jpg">Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Modal -->
+  <div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTitle">Product Name</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-5">
+              <img src="" id="modalImage" class="img-fluid rounded" alt="">
+            </div>
+            <div class="col-md-7">
+              <p class="product-price" id="modalPrice"></p>
+              <p id="modalDesc"></p>
+              <button class="btn btn-orange mt-3" id="addToCartModal">Add to Cart <i class="bi bi-cart-plus"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modern Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <img src="assets/logo.png" alt="logo" style="height: 40px; margin-bottom: 15px;">
+          <p>Your one-stop shop for trendy and quality products. Enjoy seamless shopping with us!</p>
+        </div>
+        <div class="col-md-2 mb-4">
+          <h6 class="text-uppercase fw-bold">Quick Links</h6>
+          <ul class="list-unstyled">
+            <li><a href="about.html" class="text-secondary">About</a></li>
+            <li><a href="location.html" class="text-secondary">Location</a></li>
+            <li><a href="contact.html" class="text-secondary">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 mb-4">
+          <h6 class="text-uppercase fw-bold">Customer Care</h6>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-secondary">FAQ</a></li>
+            <li><a href="#" class="text-secondary">Returns</a></li>
+            <li><a href="#" class="text-secondary">Shipping</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 mb-4">
+          <h6 class="text-uppercase fw-bold">Follow Us</h6>
+          <div class="social-icons">
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-twitter-x"></i></a>
+            <a href="#"><i class="bi bi-pinterest"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr class="bg-secondary">
+      <div class="text-center pt-3">
+        <p class="small">© 2025 ShopHome. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS & Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS for modal population -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const productModal = document.getElementById('productModal');
+      productModal.addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget;
+        const name = button.getAttribute('data-name');
+        const price = button.getAttribute('data-price');
+        const desc = button.getAttribute('data-desc');
+        const img = button.getAttribute('data-img');
+
+        document.getElementById('modalTitle').textContent = name;
+        document.getElementById('modalPrice').textContent = price;
+        document.getElementById('modalDesc').textContent = desc;
+        document.getElementById('modalImage').src = img;
+      });
+
+      document.getElementById('addToCartModal').addEventListener('click', function () {
+        alert('Product added to cart (demo).');
+        // optionally close modal
+        bootstrap.Modal.getInstance(document.getElementById('productModal')).hide();
+      });
+    });
+  </script>
+</body>
+</html>
