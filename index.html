@@ -1,401 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HALKA Shop BD - E-Commerce</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Base styling with exact background color requested */
-        body {
-            background-color: #000001;
-            color: #f3f4f6;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            overflow-x: hidden;
-        }
-
-        /* Hero section custom dark gray color */
-        .hero-bg {
-            background-color: #121215;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        /* Card background dark gray theme */
-        .product-card {
-            background: linear-gradient(145deg, #121216 0%, #0a0a0d 100%);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .product-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(99, 102, 241, 0.4);
-            box-shadow: 0 12px 25px -5px rgba(0, 0, 0, 0.7), 0 0 15px rgba(99, 102, 241, 0.15);
-        }
-
-        /* Category pills styling */
-        .category-pill {
-            background: #121216;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.25s ease;
-        }
-
-        .category-pill:hover, .category-pill.active {
-            background: #6366f1;
-            border-color: #818cf8;
-            color: #ffffff;
-            box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
-        }
-
-        /* Custom scrollbar for dark aesthetic */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #000001;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1f2937;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #374151;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HALKA Shop BD</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="min-h-screen flex flex-col justify-between pt-20">
+<body>
 
-    <!-- 1. TOP FIXED NAVIGATION BAR (Contains Search Bar Only) -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#000001]/90 backdrop-blur-md border-b border-gray-800/80 px-4 py-3 flex justify-center items-center">
-        <div class="w-full max-w-2xl relative">
-            <input 
-                type="text" 
-                id="searchInput"
-                placeholder="Search products, codes, categories..." 
-                class="w-full bg-[#121215] text-gray-200 placeholder-gray-500 rounded-full py-2.5 pl-11 pr-12 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/50 border border-gray-800 transition-all duration-300 shadow-inner"
-            >
-            <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
-            <button id="searchBtn" class="absolute right-1.5 top-1/2 -translate-y-1/2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-full p-1.5 px-3 text-xs font-medium transition-colors flex items-center gap-1">
-                <span>Search</span>
-            </button>
-        </div>
-    </nav>
-
-    <!-- MAIN CONTENT WRAPPER -->
-    <main class="flex-grow">
-        
-        <!-- 2. HERO SECTION (Dark Gray, Wide with margins on all four sides & rounded corners) -->
-        <section class="mx-4 my-6 sm:mx-8 md:mx-12 lg:mx-16 rounded-3xl hero-bg p-8 md:p-14 text-center relative overflow-hidden shadow-2xl">
-            <!-- Background Subtle Glow Effect -->
-            <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none"></div>
-
-            <div class="relative z-10 flex flex-col items-center justify-center">
-                <!-- Small Round Container in Middle for Logo -->
-                <div class="w-24 h-24 md:w-28 md:h-28 rounded-full bg-[#000001] border-2 border-indigo-500/40 p-2 shadow-xl flex items-center justify-center mb-4 transition-transform duration-300 hover:scale-105">
-                    <img 
-                        src="assets/HALKA_20261017_181917_0001_edit_1501144433251244.png" 
-                        alt="HALKA Shop BD Logo" 
-                        class="w-full h-full object-contain rounded-full"
-                        onerror="this.onerror=null; this.src='https://placehold.co/150x150/1e1e24/6366f1?text=HALKA+SHOP';"
-                    >
-                </div>
-                
-                <!-- Title under Logo -->
-                <h1 class="text-2xl md:text-4xl font-extrabold tracking-tight text-white mb-1">
-                    HALKA Shop BD
-                </h1>
-                <p class="text-xs md:text-sm text-gray-400 font-light max-w-md">Your trusted modern online shopping destination in Bangladesh</p>
-            </div>
-        </section>
-
-        <!-- 3. CATEGORY HYPERLINKS SECTION -->
-        <section class="px-4 sm:px-8 md:px-12 lg:px-16 mb-10">
-            <div class="flex flex-wrap items-center justify-center gap-3 md:gap-4" id="categoryContainer">
-                <a href="#toys" data-category="Toys" class="category-pill text-xs md:text-sm font-semibold px-5 py-2.5 rounded-full text-gray-300 flex items-center gap-2">
-                    <i class="fa-solid fa-gamepad text-indigo-400"></i> Toys
-                </a>
-                <a href="#kitchen" data-category="Kitchen" class="category-pill text-xs md:text-sm font-semibold px-5 py-2.5 rounded-full text-gray-300 flex items-center gap-2">
-                    <i class="fa-solid fa-utensils text-indigo-400"></i> Kitchen
-                </a>
-                <a href="#female-fashion" data-category="Female" class="category-pill text-xs md:text-sm font-semibold px-5 py-2.5 rounded-full text-gray-300 flex items-center gap-2">
-                    <i class="fa-solid fa-person-dress text-indigo-400"></i> Fashion (Female)
-                </a>
-                <a href="#male-fashion" data-category="Male" class="category-pill text-xs md:text-sm font-semibold px-5 py-2.5 rounded-full text-gray-300 flex items-center gap-2">
-                    <i class="fa-solid fa-user-tie text-indigo-400"></i> Fashion (Male)
-                </a>
-            </div>
-        </section>
-
-        <!-- SEARCH RESULTS MESSAGING CONTAINER (Hidden by default) -->
-        <div id="searchResultsBanner" class="px-4 sm:px-8 md:px-12 lg:px-16 mb-6 hidden">
-            <div class="bg-indigo-950/40 border border-indigo-800/50 rounded-xl p-4 flex justify-between items-center text-sm">
-                <span class="text-indigo-200">Showing search results for: <strong id="searchQueryText" class="text-white"></strong></span>
-                <button id="clearSearchBtn" class="text-xs bg-gray-800 hover:bg-gray-700 text-gray-300 px-3 py-1.5 rounded-lg transition-colors">Clear Filter</button>
-            </div>
-        </div>
-
-        <!-- 4. PRODUCT SECTIONS (Three Sections: Most Sold, Trending, New - Exactly 5 Cards Each) -->
-        
-        <!-- SECTION 1: MOST SOLD -->
-        <section class="px-4 sm:px-8 md:px-12 lg:px-16 mb-12 product-section" id="most-sold-section">
-            <div class="flex items-center justify-between mb-6 border-b border-gray-800/80 pb-3">
-                <h2 class="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
-                    <span class="w-2.5 h-6 bg-indigo-500 rounded-full inline-block"></span>
-                    Most Sold
-                </h2>
-                <span class="text-xs text-gray-400 uppercase tracking-widest font-semibold">5 Top Items</span>
-            </div>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5" id="most-sold-grid">
-                <!-- Cards injected dynamically via JS for maintainability or rendered here -->
-            </div>
-        </section>
-
-        <!-- SECTION 2: TRENDING -->
-        <section class="px-4 sm:px-8 md:px-12 lg:px-16 mb-12 product-section" id="trending-section">
-            <div class="flex items-center justify-between mb-6 border-b border-gray-800/80 pb-3">
-                <h2 class="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
-                    <span class="w-2.5 h-6 bg-pink-500 rounded-full inline-block"></span>
-                    Trending
-                </h2>
-                <span class="text-xs text-gray-400 uppercase tracking-widest font-semibold">5 Hot Items</span>
-            </div>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5" id="trending-grid">
-                <!-- Cards injected dynamically via JS -->
-            </div>
-        </section>
-
-        <!-- SECTION 3: NEW -->
-        <section class="px-4 sm:px-8 md:px-12 lg:px-16 mb-12 product-section" id="new-section">
-            <div class="flex items-center justify-between mb-6 border-b border-gray-800/80 pb-3">
-                <h2 class="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
-                    <span class="w-2.5 h-6 bg-emerald-500 rounded-full inline-block"></span>
-                    New Arrivals
-                </h2>
-                <span class="text-xs text-gray-400 uppercase tracking-widest font-semibold">5 Fresh Items</span>
-            </div>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5" id="new-grid">
-                <!-- Cards injected dynamically via JS -->
-            </div>
-        </section>
-
-    </main>
-
-    <!-- 5. FOOTER SECTION -->
-    <footer class="border-t border-gray-900 bg-[#000001] py-8 px-4 text-center mt-auto">
-        <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-            <!-- Copyright text -->
-            <p class="text-xs md:text-sm text-gray-500 font-medium order-2 md:order-1">
-                © 2026 HALKA Shop BD. All rights reserved.
-            </p>
-            
-            <!-- Hyperlink buttons: Affiliation, Facebook, Instagram -->
-            <div class="flex items-center justify-center gap-4 order-1 md:order-2">
-                <a href="#affiliation" onclick="showToast('Navigating to Affiliation Program')" class="text-xs font-semibold text-gray-400 hover:text-indigo-400 bg-gray-900/80 hover:bg-gray-800 border border-gray-800 px-3.5 py-1.5 rounded-full transition-colors flex items-center gap-1.5">
-                    <i class="fa-solid fa-handshake text-indigo-400"></i> Affiliation
-                </a>
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-gray-400 hover:text-blue-400 bg-gray-900/80 hover:bg-gray-800 border border-gray-800 px-3.5 py-1.5 rounded-full transition-colors flex items-center gap-1.5">
-                    <i class="fa-brands fa-facebook text-blue-500"></i> Facebook
-                </a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-gray-400 hover:text-pink-400 bg-gray-900/80 hover:bg-gray-800 border border-gray-800 px-3.5 py-1.5 rounded-full transition-colors flex items-center gap-1.5">
-                    <i class="fa-brands fa-instagram text-pink-500"></i> Instagram
-                </a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- DYNAMIC TOAST NOTIFICATION -->
-    <div id="toast" class="fixed bottom-5 right-5 bg-indigo-600 text-white text-xs font-medium px-4 py-3 rounded-xl shadow-2xl opacity-0 translate-y-4 transition-all duration-300 pointer-events-none z-50 flex items-center gap-2 border border-indigo-400/30">
-        <i class="fa-solid fa-circle-info"></i>
-        <span id="toastMsg">Product details loaded</span>
+  <header class="hero">
+    <div class="logo-wrap">
+      <img src="assets/logo.png" alt="HALKA Shop BD logo">
     </div>
+    <h1>HALKA Shop BD</h1>
+  </header>
 
-    <!-- JAVASCRIPT LOGIC -->
-    <script>
-        // Exact product dataset - 5 items per section as explicitly requested
-        const productsData = {
-            mostSold: [
-                { id: "MS-01", code: "#TOY-101", title: "RC Turbo Drift Stunt Car", category: "Toys", price: "৳ 1,850", image: "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?auto=format&fit=crop&w=400&q=80" },
-                { id: "MS-02", code: "#KTN-201", title: "Electric Blender & Grinder", category: "Kitchen", price: "৳ 3,200", image: "https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&fit=crop&w=400&q=80" },
-                { id: "MS-03", code: "#FMF-301", title: "Silk Embroidered Salwar Kameez", category: "Female", price: "৳ 4,500", image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=400&q=80" },
-                { id: "MS-04", code: "#FMM-401", title: "Premium Cotton Panjabi", category: "Male", price: "৳ 2,750", image: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=400&q=80" },
-                { id: "MS-05", code: "#KTN-202", title: "Non-Stick Cookware Set 7Pcs", category: "Kitchen", price: "৳ 5,400", image: "https://images.unsplash.com/photo-1584992236310-6edddc08acff?auto=format&fit=crop&w=400&q=80" }
-            ],
-            trending: [
-                { id: "TR-01", code: "#FMF-302", title: "Designer Floral Lawn Saree", category: "Female", price: "৳ 3,890", image: "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=400&q=80" },
-                { id: "TR-02", code: "#TOY-102", title: "Educational Building Blocks", category: "Toys", price: "৳ 1,250", image: "https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=400&q=80" },
-                { id: "TR-03", code: "#FMM-402", title: "Slim Fit Formal Oxford Shirt", category: "Male", price: "৳ 1,950", image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=400&q=80" },
-                { id: "TR-04", code: "#KTN-203", title: "Digital Air Fryer 4.5L", category: "Kitchen", price: "৳ 8,900", image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=400&q=80" },
-                { id: "TR-05", code: "#FMM-403", title: "Casual Denim Jacket Heavy", category: "Male", price: "৳ 3,100", image: "https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&w=400&q=80" }
-            ],
-            new: [
-                { id: "NW-01", code: "#KTN-204", title: "Smart Coffee Espresso Maker", category: "Kitchen", price: "৳ 12,500", image: "https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?auto=format&fit=crop&w=400&q=80" },
-                { id: "NW-02", code: "#FMF-303", title: "Casual Chiffon Summer Top", category: "Female", price: "৳ 1,450", image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=400&q=80" },
-                { id: "NW-03", code: "#TOY-103", title: "Smart Interactive Toy Robot", category: "Toys", price: "৳ 2,900", image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=400&q=80" },
-                { id: "NW-04", code: "#FMM-404", title: "Handcrafted Leather Loafers", category: "Male", price: "৳ 4,200", image: "https://images.unsplash.com/photo-1533867617858-e7b97e060509?auto=format&fit=crop&w=400&q=80" },
-                { id: "NW-05", code: "#TOY-104", title: "HD Camera Quadcopter Drone", category: "Toys", price: "৳ 6,700", image: "https://images.unsplash.com/photo-1527977966376-1c8408f9f108?auto=format&fit=crop&w=400&q=80" }
-            ]
-        };
+  <main class="categories">
+    <section class="category">
+      <div class="photo"><img src="assets/toys.jpg" alt="Toys"></div>
+      <h2>Toys</h2>
+      <a class="btn" href="toys.html">Shop Toys</a>
+    </section>
 
-        // Render Card HTML Template
-        function createProductCard(product) {
-            return `
-                <div class="product-card rounded-2xl p-3.5 flex flex-col justify-between h-full group" data-category="${product.category}" data-code="${product.code.toLowerCase()}" data-title="${product.title.toLowerCase()}">
-                    <div>
-                        <!-- Product Image Container -->
-                        <div class="relative w-full aspect-square rounded-xl overflow-hidden bg-gray-900 mb-3 border border-gray-800">
-                            <img 
-                                src="${product.image}" 
-                                alt="${product.title}" 
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                loading="lazy"
-                                onerror="this.onerror=null; this.src='https://placehold.co/400x400/18181b/6366f1?text=Product+Image';"
-                            >
-                            <span class="absolute top-2 left-2 bg-[#000001]/80 text-gray-300 backdrop-blur-md text-[10px] font-bold px-2 py-0.5 rounded-md border border-gray-700">
-                                ${product.category}
-                            </span>
-                        </div>
+    <section class="category">
+      <div class="photo"><img src="assets/kitchen.jpg" alt="Kitchen"></div>
+      <h2>Kitchen</h2>
+      <a class="btn" href="kitchen.html">Shop Kitchen</a>
+    </section>
 
-                        <!-- Product Title -->
-                        <h3 class="text-sm font-bold text-gray-100 mb-1 line-clamp-1 group-hover:text-indigo-400 transition-colors" title="${product.title}">
-                            ${product.title}
-                        </h3>
+    <section class="category">
+      <div class="photo"><img src="assets/fashion-female.jpg" alt="Fashion (Female)"></div>
+      <h2>Fashion (Female)</h2>
+      <a class="btn" href="fashion-female.html">Shop Fashion (Female)</a>
+    </section>
 
-                        <!-- Product Code -->
-                        <p class="text-[11px] font-mono text-gray-400 mb-2">
-                            Code: <span class="text-gray-300 font-semibold">${product.code}</span>
-                        </p>
-                    </div>
+    <section class="category">
+      <div class="photo"><img src="assets/fashion-male.jpg" alt="Fashion (Male)"></div>
+      <h2>Fashion (Male)</h2>
+      <a class="btn" href="fashion-male.html">Shop Fashion (Male)</a>
+    </section>
+  </main>
 
-                    <div>
-                        <!-- Price -->
-                        <div class="text-base font-extrabold text-white mb-3">
-                            ${product.price}
-                        </div>
+  <footer class="footer">
+    <p>&copy; <span id="year">2026</span> HALKA Shop BD. All rights reserved.</p>
+    <nav class="footer-links">
+      <a class="btn" href="affiliation.html">Affiliation</a>
+      <a class="btn" href="https://www.facebook.com/" target="_blank" rel="noopener">Facebook</a>
+      <a class="btn" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
+    </nav>
+  </footer>
 
-                        <!-- Details Hyperlink Button -->
-                        <a 
-                            href="#details-${product.id}" 
-                            onclick="handleDetailsClick(event, '${product.title}', '${product.code}')" 
-                            class="w-full bg-indigo-600/20 hover:bg-indigo-600 text-indigo-300 hover:text-white border border-indigo-500/30 hover:border-indigo-500 font-semibold text-xs py-2 px-3 rounded-xl text-center transition-all duration-300 block shadow-sm"
-                        >
-                            Details <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i>
-                        </a>
-                    </div>
-                </div>
-            `;
-        }
-
-        // Initialize and populate product grids
-        function renderAllProducts() {
-            document.getElementById('most-sold-grid').innerHTML = productsData.mostSold.map(createProductCard).join('');
-            document.getElementById('trending-grid').innerHTML = productsData.trending.map(createProductCard).join('');
-            document.getElementById('new-grid').innerHTML = productsData.new.map(createProductCard).join('');
-        }
-
-        // Toast Handler
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toastMsg');
-            toastMsg.textContent = message;
-            
-            toast.classList.remove('opacity-0', 'translate-y-4');
-            toast.classList.add('opacity-100', 'translate-y-0');
-
-            setTimeout(() => {
-                toast.classList.remove('opacity-100', 'translate-y-0');
-                toast.classList.add('opacity-0', 'translate-y-4');
-            }, 3000);
-        }
-
-        function handleDetailsClick(e, title, code) {
-            e.preventDefault();
-            showToast(`Opening details for ${title} (${code})`);
-        }
-
-        // Live Search & Filtering Functionality
-        function filterProducts(query) {
-            const cleanQuery = query.trim().toLowerCase();
-            const allCards = document.querySelectorAll('.product-card');
-            const searchBanner = document.getElementById('searchResultsBanner');
-            const searchQueryText = document.getElementById('searchQueryText');
-
-            if (cleanQuery === '') {
-                allCards.forEach(card => card.parentElement.classList.remove('hidden'));
-                searchBanner.classList.add('hidden');
-                return;
-            }
-
-            searchQueryText.textContent = query;
-            searchBanner.classList.remove('hidden');
-
-            let matchCount = 0;
-            allCards.forEach(card => {
-                const title = card.getAttribute('data-title');
-                const code = card.getAttribute('data-code');
-                const category = card.getAttribute('data-category').toLowerCase();
-
-                if (title.includes(cleanQuery) || code.includes(cleanQuery) || category.includes(cleanQuery)) {
-                    card.classList.remove('hidden');
-                    matchCount++;
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
-        }
-
-        // Category Filter Handling
-        function setupCategoryFilters() {
-            const pills = document.querySelectorAll('.category-pill');
-            pills.forEach(pill => {
-                pill.addEventListener('click', (e) => {
-                    const category = pill.getAttribute('data-category').toLowerCase();
-                    const searchInput = document.getElementById('searchInput');
-                    
-                    // Toggle active visual state
-                    pills.forEach(p => p.classList.remove('active'));
-                    pill.classList.add('active');
-
-                    searchInput.value = category;
-                    filterProducts(category);
-                });
-            });
-        }
-
-        // Setup Event Listeners
-        window.addEventListener('DOMContentLoaded', () => {
-            renderAllProducts();
-            setupCategoryFilters();
-
-            const searchInput = document.getElementById('searchInput');
-            const searchBtn = document.getElementById('searchBtn');
-            const clearSearchBtn = document.getElementById('clearSearchBtn');
-
-            // Live search on typing
-            searchInput.addEventListener('input', (e) => {
-                filterProducts(e.target.value);
-            });
-
-            // Search button click
-            searchBtn.addEventListener('click', () => {
-                filterProducts(searchInput.value);
-            });
-
-            // Clear search filter button
-            clearSearchBtn.addEventListener('click', () => {
-                searchInput.value = '';
-                filterProducts('');
-                document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
-            });
-        });
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>
